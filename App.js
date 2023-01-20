@@ -10,6 +10,7 @@ export default function App() {
 
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
+ 
 
 
   function calculator(){
@@ -33,15 +34,21 @@ export default function App() {
       case '/': 
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
+
+        case '%':
+          return
     }
   }
 
-  function handleInput(buttonPressed){
+  function handleInput(buttonPressed){  
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
+    
     if(buttonPressed === '+' || buttonPressed === "-" || buttonPressed === "x" || buttonPressed === "/" ){
       setCurrentNumber(currentNumber + " " + buttonPressed + " ") // entre as aspas tem um espaço para separar os numeros
       return
     }
+
+
     switch(buttonPressed){
       
       
@@ -63,7 +70,15 @@ export default function App() {
       
       
         case '+/-':
-        return
+          //setCurrentNumber(Math.abs(currentNumber))
+          if(currentNumber > 0){
+            setCurrentNumber(currentNumber * -1) // converte de positivo para negativo
+          }else{
+            setCurrentNumber(Math.abs(currentNumber)) // converte de negativo para positivo
+          }
+      return
+                 
+       
     }
 
     setCurrentNumber(currentNumber + buttonPressed)
