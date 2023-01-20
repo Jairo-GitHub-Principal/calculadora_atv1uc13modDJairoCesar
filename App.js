@@ -4,15 +4,18 @@ import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 export default function App() {
   // Mapeamento de teclas
-  const buttons = ['LIMPAR', 'DEL', '%', '/', 7, 8, 9, "x", 6, 5, 4, '-', 3, 2, 1, '+', 0, '.', '+/-', '=']
+  const buttons = ['LIMPAR', 'DEL', '%', '/',  7, 8, 9, "x", 4, 5, 6, '-', 1, 2, 3, '+', 0, '.', '+/-', '=']
+
+                                             
 
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
 
 
   function calculator(){
+    //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array. A divisão é feita procurando um padrão, onde o padrão é fornecido como o primeiro parâmetro na chamada do método.
     const splitNumbers = currentNumber.split(' ')
-    const fistNumber = parseFloat(splitNumbers[0])
+    const fistNumber = parseFloat(splitNumbers[0]) 
     const lastNumber = parseFloat(splitNumbers[2])
     const operator = splitNumbers[1]
 
@@ -25,7 +28,7 @@ export default function App() {
         setCurrentNumber((fistNumber - lastNumber).toString())
         return
       case 'x':
-        setCurrentNumber((fistNumber + lastNumber).toString())
+        setCurrentNumber((fistNumber + lastNumber).toString()) // aqui de
         return
       case '/': 
         setCurrentNumber((fistNumber - lastNumber).toString())
@@ -35,23 +38,31 @@ export default function App() {
 
   function handleInput(buttonPressed){
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
-    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "x" | buttonPressed === "/" ){
-      setCurrentNumber(currentNumber + " " + buttonPressed + " ")
+    if(buttonPressed === '+' || buttonPressed === "-" || buttonPressed === "x" || buttonPressed === "/" ){
+      setCurrentNumber(currentNumber + " " + buttonPressed + " ") // entre as aspas tem um espaço para separar os numeros
       return
     }
     switch(buttonPressed){
+      
+      
       case 'DEL':
         setCurrentNumber(currentNumber.substring(0, (currentNumber.length - 2)))
         return
-      case 'LIMPAR': // Limpa todo o conteúdo
+      
+      
+        case 'LIMPAR': // Limpa todo o conteúdo
         setLastNumber("") 
         setCurrentNumber("") 
         return
-      case '=':
+      
+      
+        case '=':
         setLastNumber(currentNumber + " = ")
         calculator()
         return
-      case '+/-':
+      
+      
+        case '+/-':
         return
     }
 
