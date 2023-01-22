@@ -11,18 +11,16 @@ export default function App() {
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
  
-
+  
   
 
-  function calculator(){
+   function calculator(){
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array. A divisão é feita procurando um padrão, onde o padrão é fornecido como o primeiro parâmetro na chamada do método.
+    
     const splitNumbers = currentNumber.split(' ')
     const fistNumber = parseFloat(splitNumbers[0]) 
     const operator = splitNumbers[1]
     const lastNumber = parseFloat(splitNumbers[2])
-   
-
-   
     
     
     // Faz ação referente tecla pressionada
@@ -40,15 +38,58 @@ export default function App() {
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
 
+        case '%':
+       
+          setLastNumber(currentNumber + "%")      
+          setCurrentNumber(lastNumber).toString()
+          setCurrentNumber(porcentagem)
+          calculator()
+          return
              
           
         }
        
   }
 
+  // porcentagem
+
+  function CalcularPorcentagem(){
+
+    const splitNumbers = currentNumber.split(' ')
+    const fistNumber = parseFloat(splitNumbers[0]) 
+    const operator = splitNumbers[1]
+    const lastNumber = parseFloat(splitNumbers[2])
+    const porcentagem = (fistNumber * lastNumber)/100
+    
+    // Faz ação referente tecla pressionada
+
+    switch(operator ){
+      case '+':
+        setCurrentNumber( ( (fistNumber + porcentagem ) ).toString())
+        return
+      case '-': 
+        setCurrentNumber((fistNumber - porcentagem).toString())
+        return
+      case 'x':
+        setCurrentNumber(( porcentagem * fistNumber ).toString()) // aqui de
+        return
+      case '/': 
+        setCurrentNumber((fistNumber / porcentagem).toString())
+        return
+
+        
+          
+        }
+
+  }
+
+  // fim porcentagem
   
   function handleInput(buttonPressed){  
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
+   
+   
+    
     
     if(buttonPressed === '+' || buttonPressed === "-" || buttonPressed === "x" || buttonPressed === "/" ){
       setCurrentNumber(currentNumber + " " + buttonPressed + " ") // entre as aspas tem um espaço para separar os numeros
@@ -85,6 +126,13 @@ export default function App() {
             setCurrentNumber(Math.abs(currentNumber)) // converte de negativo para positivo
           }
       return
+
+      case '%':
+       
+        setLastNumber(currentNumber + " % ")
+        CalcularPorcentagem()
+
+          return
 
                      
        
