@@ -12,16 +12,21 @@ export default function App() {
   const [lastNumber, setLastNumber] = useState("")
  
 
+  
 
   function calculator(){
     //O método split() divide uma String em uma lista ordenada de substrings, coloca essas substrings em um array e retorna o array. A divisão é feita procurando um padrão, onde o padrão é fornecido como o primeiro parâmetro na chamada do método.
     const splitNumbers = currentNumber.split(' ')
     const fistNumber = parseFloat(splitNumbers[0]) 
-    const lastNumber = parseFloat(splitNumbers[2])
     const operator = splitNumbers[1]
+    const lastNumber = parseFloat(splitNumbers[2])
+   
 
+   
+    
+    
     // Faz ação referente tecla pressionada
-    switch(operator){
+    switch(operator ){
       case '+':
         setCurrentNumber((fistNumber + lastNumber).toString())
         return
@@ -35,11 +40,13 @@ export default function App() {
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
 
-        case '%':
-          return
-    }
+             
+          
+        }
+       
   }
 
+  
   function handleInput(buttonPressed){  
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
     
@@ -67,7 +74,8 @@ export default function App() {
         setLastNumber(currentNumber + " = ")
         calculator()
         return
-      
+
+             
       
         case '+/-':
           //setCurrentNumber(Math.abs(currentNumber))
@@ -77,7 +85,8 @@ export default function App() {
             setCurrentNumber(Math.abs(currentNumber)) // converte de negativo para positivo
           }
       return
-                 
+
+                     
        
     }
 
