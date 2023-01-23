@@ -10,6 +10,8 @@ export default function App() {
 
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
+
+  
  
   
   
@@ -38,13 +40,7 @@ export default function App() {
         setCurrentNumber((fistNumber / lastNumber).toString())
         return
 
-        case '%':
-       
-          setLastNumber(currentNumber + "%")      
-          setCurrentNumber(lastNumber).toString()
-          setCurrentNumber(porcentagem)
-          calculator()
-          return
+        
              
           
         }
@@ -59,22 +55,24 @@ export default function App() {
     const fistNumber = parseFloat(splitNumbers[0]) 
     const operator = splitNumbers[1]
     const lastNumber = parseFloat(splitNumbers[2])
-    const porcentagem = (fistNumber * lastNumber)/100
+    const porcentagemMaisMenos = (fistNumber * lastNumber)/100
+    const porcentagemMultDiv = lastNumber / 100
+    
     
     // Faz ação referente tecla pressionada
 
     switch(operator ){
       case '+':
-        setCurrentNumber( ( (fistNumber + porcentagem ) ).toString())
+        setCurrentNumber( ( (fistNumber + porcentagemMaisMenos ) ).toString())
         return
       case '-': 
-        setCurrentNumber((fistNumber - porcentagem).toString())
+        setCurrentNumber((fistNumber - porcentagemMaisMenos).toString())
         return
       case 'x':
-        setCurrentNumber(( porcentagem * fistNumber ).toString()) // aqui de
+        setCurrentNumber(( porcentagemMultDiv * fistNumber ).toString()) // aqui de
         return
       case '/': 
-        setCurrentNumber((fistNumber / porcentagem).toString())
+        setCurrentNumber((fistNumber/porcentagemMultDiv).toString())
         return
 
         
@@ -130,7 +128,11 @@ export default function App() {
       case '%':
        
         setLastNumber(currentNumber + " % ")
+       
         CalcularPorcentagem()
+       
+        
+       
 
           return
 
